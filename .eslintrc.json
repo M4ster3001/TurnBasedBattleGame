@@ -1,0 +1,62 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "plugin:react/recommended",
+        "eslint:recommended",
+        "standard",
+        "plugin:react-hooks/recommended",
+        "plugin:prettier/recommended",
+        "plugin:import/react"
+    ],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react",
+        "react-hooks",
+        "prettier"
+    ],
+    "ignorePatterns": [ "*.test.js", "*.test.tsx" ],
+    "rules": {
+        "react/prop-types": "off",
+        "react/jsx-filename-extension": [ 1, { "extensions": [".js", ".jsx"] }],
+        "react/react-in-jsx-scope": "off",
+        "import/extensions": [
+            "error",
+            "ignorePackages",
+            {
+                "js": "never",
+                "jsx": "never",
+                "ts": "never",
+                "tsx": "never"
+            }
+        ],
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "warn",
+        "import/prefer-default-export": "off",
+        "camelcase": "off",
+        "no-use-before-define": "off",
+        "no-unused-expressions": "warn",
+        "prettier/prettier": ["warn", { "endOfLine": "auto" }],
+        "arrow-body-style": "off",
+        "prefer-arrow-callback": "off",
+        "no-unused-vars": "warn"
+    },
+    "settings": {
+        "import/resolver": {
+            "node": {
+                "extensions": [".js",".jsx"]
+               }
+        },
+        "react": {
+          "version": "detect"
+        }
+      }
+}
