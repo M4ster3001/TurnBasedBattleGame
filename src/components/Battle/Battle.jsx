@@ -1,19 +1,30 @@
 import styles from './styles.module.css'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { CharacterSummary } from 'components/CharacterSummary'
 import { opponentStats, playerStats } from 'shared'
 import { BattleMenu } from 'components/BattleMenu'
 import { BattleAnnouncer } from 'components/BattleAnnouncer'
-import { useBattleSequece } from 'hooks'
+import { useAIOpponent, useBattleSequence } from 'hooks'
 
 export const Battle = () => {
-  const { opponentHealth, playerHealth, annoucerMessage } = useBattleSequece()
+  const [sequence, setSequence] = useState({})
+  const {
+    turn,
+    opponentHealth,
+    playerHealth,
+    annoucerMessage,
+    inSequence,
+    playerAnimation,
+    opponentAnimation
+  } = useBattleSequence(sequence)
 
-  function handleAttack() {}
+  const aiChoice = useAIOpponent(turn)
 
-  function handleMagic() {}
-
-  function handleHeal() {}
+  useEffect(() => {
+    if (aiChoice && turn === 1 && !inSequence) {
+      setSequence({ turn, mode: aiChoice })
+    }
+  }, [turn, aiChoice, inSequence])
 
   return (
     <>
@@ -38,7 +49,7 @@ export const Battle = () => {
             <img
               alt={playerStats.name}
               src={playerStats.img}
-              // className={styles}
+              className={styles[playerAnimation]}
             />
           </div>
 
@@ -46,7 +57,7 @@ export const Battle = () => {
             <img
               alt={opponentStats.name}
               src={opponentStats.img}
-              // className={styles}
+              className={styles[opponentAnimation]}
             />
           </div>
         </div>
@@ -71,9 +82,9 @@ export const Battle = () => {
           </div>
           <div className={styles.hudChild}>
             <BattleMenu
-              onAttack={handleAttack}
-              onMagic={handleMagic}
-              onHeal={handleHeal}
+              onAttack={setSequence({ turn, mode: 'attack ' })}
+              onMagic={setSequence({ turn, mode: 'magic ' })}
+              onHeal={setSequence({ turn, mode: 'heal ' })}
             />
           </div>
         </div>
