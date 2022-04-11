@@ -5,7 +5,7 @@ export const StartMenu = ({ onStartClick }) => {
   return (
     <div className={styles.main}>
       <button
-        className={styles.StartMenu}
+        className={styles.startButton}
         onClick={() => onStartClick('battle')}
       >
         Start Game

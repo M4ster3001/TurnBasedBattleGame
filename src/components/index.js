@@ -1,4 +1,6 @@
 export * from './App'
-export * from './StartMenu/StarMenu'
+export * from './StartMenu'
 export * from './Battle'
 export * from './GameOver'
+export * from './BattleMenu'
+export * from './BattleAnnouncer'
